@@ -11,6 +11,22 @@ class Graph {
         this.AdjList[v].push(w);
         this.AdjList[w].push(v)
     }
+    bfs(start, end) {
+        const queue = [];
+        queue.push([start]);
+        while (queue.length > 0) {
+            const path = queue.shift()
+            const node = path[path.length-1]
+            if (node === end) {
+                return path;
+            }
+            for (const adjascent of this.AdjList[node]) {
+                const new_path = [...path]
+                new_path.push(adjascent)
+                queue.push(new_path) 
+            }
+        }
+    }
     printGraph() {
         var get_keys = Object.keys(this.AdjList);
         for (var key of get_keys) {
@@ -134,4 +150,5 @@ G.newEdge('Atenas', 'Pátras', 3.58);
 G.newEdge('Istambul', 'Ancara', 4);
 
 // Usando as Funções
-G.printGraph()
+//G.printGraph()
+console.log(G.bfs("Londres", "Ancara"))
