@@ -1,32 +1,43 @@
 // Criando a classe de grafos 
 class Graph {
     constructor(QVertices) {
-        this.noOfVertices = QVertices;
-        this.AdjList = {};
+        this.noOfVertices = QVertices
+        this.AdjList = {}
     }
+
     newVertice(v) {
         this.AdjList[v] = []
     }
+
     newEdge(v, w, d) {
-        this.AdjList[v].push(w);
+        this.AdjList[v].push(w)
         this.AdjList[w].push(v)
     }
+
     bfs(start, end) {
-        const queue = [];
-        queue.push([start]);
+        const queue = []
+        const visited = []
+        for (i in this.AdjList)
+            visited[i] = false
+        visited[start] = true
+        queue.push([start])
         while (queue.length > 0) {
             const path = queue.shift()
             const node = path[path.length-1]
             if (node === end) {
-                return path;
+                return path
             }
             for (const adjascent of this.AdjList[node]) {
-                const new_path = [...path]
-                new_path.push(adjascent)
-                queue.push(new_path) 
+                if(visited[adjascent] == false) {
+                    const new_path = [...path]
+                    new_path.push(adjascent)
+                    queue.push(new_path)
+                    visited[adjascent] = true;
+                }
             }
         }
     }
+
     printGraph() {
         var get_keys = Object.keys(this.AdjList);
         for (var key of get_keys) {
@@ -40,7 +51,7 @@ class Graph {
 }
 // Adicionando vértices e arestas no Grafo ("Base de dados")
 var G = new Graph(73);
-const vertices = ["Paris", "Lyon", "Marselha", "Montpellier", "Nice", "Bordéus", "Rennes", "Milão", "Bolonha", "Florença", "Roma", "Nápoles", "Bari", "Catânia", "Veneza", "Munique", "Frankfurt", "Colônia", "Hamburgo", "Berlim", "Madrid", "Pamplona", "Santander", "Santiago de Compostela", "Lisboa", "Málaga", "Sevilha", "Valência", "Barcelona", "Porto", "Faro", "Berna", "Copenhage", "Oslo", "Estocolmo", "Bergen", "Östersund", "Trondheim", "Kiruna", "Bruxelas", "Amsterdã", "Londres", "Penzance", "Bristol", "Holyhead", "Birmingham", "Edimburgo", "Glasgow", "Aberdeen",     "Talín", "Tartu", "Riga", "Vilnius", "Dunaburgo", "Klaipėda", "Białystok", "Varsóvia", "Gdansk", "Praga", "Viena", "Budapeste", "Liubliana", "Zagrebe", "Belgrado", "Bucareste", "Split", "Sófia", "Escópia", "Istambul", "Tessalônica", "Atenas", "Pátras", "Ancara"];
+const vertices = ["Paris", "Lyon", "Marselha", "Montpellier", "Nice", "Bordéus", "Rennes", "Milão", "Bolonha", "Florença", "Roma", "Nápoles", "Bari", "Catânia", "Veneza", "Munique", "Frankfurt", "Colônia", "Hamburgo", "Berlim", "Madrid", "Pamplona", "Santander", "Santiago de Compostela", "Lisboa", "Málaga", "Sevilha", "Valência", "Barcelona", "Porto", "Faro", "Berna", "Copenhage", "Oslo", "Estocolmo", "Bergen", "Östersund", "Trondheim", "Kiruna", "Bruxelas", "Amsterdã", "Londres", "Penzance", "Bristol", "Holyhead", "Birmingham", "Edimburgo", "Glasgow", "Aberdeen", "Talín", "Tartu", "Riga", "Vilnius", "Dunaburgo", "Klaipėda", "Białystok", "Varsóvia", "Gdansk", "Praga", "Viena", "Budapeste", "Liubliana", "Zagrebe", "Belgrado", "Bucareste", "Split", "Sófia", "Escópia", "Istambul", "Tessalônica", "Atenas", "Pátras", "Ancara"];
 
 for (var i = 0; i < vertices.length; i++) {
     G.newVertice(vertices[i]);
@@ -151,4 +162,4 @@ G.newEdge('Istambul', 'Ancara', 4);
 
 // Usando as Funções
 //G.printGraph()
-console.log(G.bfs("Londres", "Ancara"))
+console.log(G.bfs("Aberdeen", "Kiruna"))
