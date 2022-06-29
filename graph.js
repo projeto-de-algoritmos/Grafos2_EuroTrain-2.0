@@ -6,12 +6,12 @@ class Graph {
     }
 
     newVertice(v) {
-        this.AdjList[v] = []
+        this.AdjList[v] = new Map()
     }
 
     newEdge(v, w, d) {
-        this.AdjList[v].push(w)
-        this.AdjList[w].push(v)
+        this.AdjList[v].set(w,d)
+        this.AdjList[w].set(v,d)
     }
 
     bfs(start, end) {
@@ -27,7 +27,7 @@ class Graph {
             if (node === end) {
                 return path
             }
-            for (const adjascent of this.AdjList[node]) {
+            for (const adjascent of this.AdjList[node].keys()) {
                 if(visited[adjascent] == false) {
                     const new_path = [...path]
                     new_path.push(adjascent)
@@ -159,7 +159,3 @@ G.newEdge('Escópia', 'Tessalônica', 4);
 G.newEdge('Tessalônica', 'Atenas', 4.42);
 G.newEdge('Atenas', 'Pátras', 3.58);
 G.newEdge('Istambul', 'Ancara', 4);
-
-// Usando as Funções
-//G.printGraph()
-console.log(G.bfs("Aberdeen", "Kiruna"))
