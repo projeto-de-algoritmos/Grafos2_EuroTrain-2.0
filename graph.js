@@ -38,17 +38,69 @@ class Graph {
         }
     }
 
-    printGraph() {
-        var get_keys = Object.keys(this.AdjList);
-        for (var key of get_keys) {
-            var get_values = this.AdjList[key];
-            var conc = "";
-            for (var j of get_values)
-                conc += j + " ";
-            console.log(key + " -> " + conc);
+    minDistance(dist,sptSet) {
+        let min = Number.MAX_VALUE;
+        let min_index = -1;
+        
+        for(let v in this.AdjList) {
+            if (sptSet[v] == false && dist[v] <= min) {
+                min = dist[v];
+                min_index = v;
+            }
         }
+        return min_index;
+    }
+
+    dijkstra(src, end) {
+        let path = {};
+        let dist = new Array(this.noOfVertices);
+        let sptSet = new Array(this.noOfVertices);
+        
+        for(var i in this.AdjList) {
+            dist[i] = Number.MAX_VALUE;
+            sptSet[i] = false;
+            path[i] = new Map()
+        }
+        
+        dist[src] = 0; 
+        for(let count = 0; count < this.noOfVertices; count++) {
+            let u = this.minDistance(dist, sptSet);
+            
+            sptSet[u] = true;
+
+            for(let v in this.AdjList) {
+                if (!sptSet[v] && dist[u] != Number.MAX_VALUE && dist[u] + this.AdjList[u].get(v) < dist[v]) {
+                    dist[v] = dist[u] + this.AdjList[u].get(v);
+                    path[v].set(u,dist[v])
+                    if(v == end)
+                        break
+                }
+            }
+        }
+        let pathEnd = new Map()
+        
+        var vetChaves = []
+        var vetValores = []
+        vetChaves.push(end)
+        let chaves = path[end].keys().next().value
+        var valores = path[end].values().next().value
+        while (chaves != src) {
+            vetValores.push(valores)
+            vetChaves.push(chaves)
+            valores = path[chaves].values().next().value
+            chaves = path[chaves].keys().next().value
+        }
+        vetValores.push(valores)
+        vetChaves.push(src)
+        
+        pathEnd.set(vetChaves[vetChaves.length-1],0)
+        for(i=vetValores.length-1;i>=0;i--) {
+            pathEnd.set(vetChaves[i], vetValores[i])
+        }
+        return pathEnd
     }
 }
+
 // Adicionando vértices e arestas no Grafo ("Base de dados")
 var G = new Graph(73);
 const vertices = ["Paris", "Lyon", "Marselha", "Montpellier", "Nice", "Bordéus", "Rennes", "Milão", "Bolonha", "Florença", "Roma", "Nápoles", "Bari", "Catânia", "Veneza", "Munique", "Frankfurt", "Colônia", "Hamburgo", "Berlim", "Madrid", "Pamplona", "Santander", "Santiago de Compostela", "Lisboa", "Málaga", "Sevilha", "Valência", "Barcelona", "Porto", "Faro", "Berna", "Copenhage", "Oslo", "Estocolmo", "Bergen", "Östersund", "Trondheim", "Kiruna", "Bruxelas", "Amsterdã", "Londres", "Penzance", "Bristol", "Holyhead", "Birmingham", "Edimburgo", "Glasgow", "Aberdeen", "Talín", "Tartu", "Riga", "Vilnius", "Dunaburgo", "Klaipėda", "Białystok", "Varsóvia", "Gdansk", "Praga", "Viena", "Budapeste", "Liubliana", "Zagrebe", "Belgrado", "Bucareste", "Split", "Sófia", "Escópia", "Istambul", "Tessalônica", "Atenas", "Pátras", "Ancara"];
@@ -159,3 +211,5 @@ G.newEdge('Escópia', 'Tessalônica', 4);
 G.newEdge('Tessalônica', 'Atenas', 4.42);
 G.newEdge('Atenas', 'Pátras', 3.58);
 G.newEdge('Istambul', 'Ancara', 4);
+
+console.log(G.dijkstra("Ancara", "Aberdeen"));
