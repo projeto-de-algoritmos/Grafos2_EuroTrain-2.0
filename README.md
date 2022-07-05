@@ -10,7 +10,7 @@
 | 18/0130722  |  Samuel Nogueira Bacelar |
 
 ## Sobre 
-Pegamos o mapa ferroviário da Europa ([presente nesse site](https://www.eurail.com/pt/plan-your-trip/railway-map)) e usamos os dados de 3 países (França, Itália e Alemanha) depois definimos que os vértices seriam as estações de trem e as arestas seriam as linhas de trem, após isso adiconamos pesos às arestas, sendo estas os tempos de viagem entre uma estação e outra. O projeto consiste em o usuário poder escolher uma origem e um destino, e receber a rota mais rápida para seu destino.
+Pegamos o mapa ferroviário da Europa ([presente nesse site](https://www.eurail.com/pt/plan-your-trip/railway-map)) e usamos os dados de todas as estações constadas ali, depois definimos que os vértices seriam as estações de trem e as arestas seriam as linhas de trem, após isso adiconamos pesos às arestas, sendo estas os tempos de viagem entre uma estação e outra. O projeto consiste em o usuário poder escolher uma origem e um destino, e receber a rota mais rápida para seu destino.
 
 ## Apresentação
   
