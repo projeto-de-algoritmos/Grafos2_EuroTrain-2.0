@@ -8,12 +8,12 @@ export class Graph {
     }
 
     newVertice(vertice: string) {
-        this.AdjList[vertice] = []
+        this.AdjList[vertice] = {}
     }
 
     newEdge(vertice: string, neighboor: string, distance: number) {
-        this.AdjList[vertice].push(neighboor);
-        this.AdjList[neighboor].push(vertice)
+        this.AdjList[vertice][neighboor] = distance;
+        this.AdjList[neighboor][vertice] = distance
     }
 
     bfs(start: string, end: string): string[] {
@@ -29,7 +29,7 @@ export class Graph {
             if (node === end) {
                 return path;
             }
-            for (const adjascent of this.AdjList[node]) {
+            for (const adjascent in this.AdjList[node]) {
                 if(visited[adjascent] == false) {
                     const new_path = [...path]
                     new_path.push(adjascent)
@@ -60,7 +60,7 @@ export class Graph {
         for(const vertice in this.AdjList) {
             dist[vertice] = Number.MAX_VALUE;
             sptSet[vertice] = false;
-            path[vertice] = new Map()
+            path[vertice] = {}
         }
         
         dist[start] = 0; 
@@ -70,33 +70,33 @@ export class Graph {
             sptSet[minimalDistance] = true;
 
             for(const vertice in this.AdjList) {
-                if (!sptSet[vertice] && dist[minimalDistance] != Number.MAX_VALUE && dist[minimalDistance] + this.AdjList[minimalDistance].get(vertice) < dist[vertice]) {
-                    dist[vertice] = dist[minimalDistance] + this.AdjList[minimalDistance].get(vertice);
-                    path[vertice].set(minimalDistance,dist[vertice])
+                if (!sptSet[vertice] && dist[minimalDistance] != Number.MAX_VALUE && dist[minimalDistance] + this.AdjList[minimalDistance][vertice] < dist[vertice]) {
+                    dist[vertice] = dist[minimalDistance] + this.AdjList[minimalDistance][vertice];
+                    path[vertice][minimalDistance] = dist[vertice]
                     if(vertice == end)
                         break
                 }
             }
         }
-        let pathEnd = new Map()
-        
+        const pathEnd = {}
+
         var vetChaves = []
         var vetValores = []
         vetChaves.push(end)
-        let chaves = path[end].keys().next().value
-        var valores = path[end].values().next().value
+        let chaves = Object.keys(path[end])[0]
+        let valores = Object.values(path[end])[0]
         while (chaves != start) {
             vetValores.push(valores)
             vetChaves.push(chaves)
-            valores = path[chaves].values().next().value
-            chaves = path[chaves].keys().next().value
+            valores = Object.values(path[chaves])[0]
+            chaves = Object.keys(path[chaves])[0]
         }
         vetValores.push(valores)
         vetChaves.push(start)
         
-        pathEnd.set(vetChaves[vetChaves.length-1],0)
+        pathEnd[vetChaves[vetChaves.length-1]] = 0
         for(let vertice = vetValores.length-1; vertice >= 0; vertice--) {
-            pathEnd.set(vetChaves[vertice], vetValores[vertice])
+            pathEnd[vetChaves[vertice]] = vetValores[vertice];
         }
         return pathEnd;
     }
@@ -106,7 +106,7 @@ export class Graph {
         for (var key of get_keys) {
             var get_values = this.AdjList[key];
             var conc = "";
-            for (var j of get_values)
+            for (var j in get_values)
                 conc += j + " ";
             console.log(key + " -> " + conc);
         }
