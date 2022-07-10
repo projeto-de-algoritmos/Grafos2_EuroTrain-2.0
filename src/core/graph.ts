@@ -53,7 +53,7 @@ export class Graph {
     }
 
     dijkstra(start: string, end: string) {
-        let path = {};
+        let path: any = {};
         let dist = {};
         let sptSet = {};
         
@@ -83,8 +83,8 @@ export class Graph {
         var vetChaves = []
         var vetValores = []
         vetChaves.push(end)
-        let chaves = Object.keys(path[end])[0]
-        let valores = Object.values(path[end])[0]
+        let chaves = Object.keys(path[end]?? {})[0];
+        let valores = Object.values(path[end]?? {})[0];
         while (chaves != start) {
             vetValores.push(valores)
             vetChaves.push(chaves)
