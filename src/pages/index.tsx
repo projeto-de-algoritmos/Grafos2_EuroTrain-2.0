@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <Container>
       <div style={{margin: '2em 0'}}>
-        <h1 style={{textAlign: 'center'}}>Euro Train</h1>
+        <h1 style={{textAlign: 'center'}}>Euro Train v2</h1>
         <p className="fw-bold text-muted" style={{textAlign: 'center'}}>
         Seu melhor planejador de rotas ferroviárias Europeias
         </p>
