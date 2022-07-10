@@ -2,7 +2,7 @@
 export class Graph {
     noOfVertices: number;
     AdjList: {};
-    constructor(QVertices: ) {
+    constructor(QVertices: number) {
         this.noOfVertices = QVertices;
         this.AdjList = {};
     }
@@ -19,7 +19,7 @@ export class Graph {
     bfs(start: string, end: string): string[] {
         const queue = [];
         const visited = {}
-        for (const isVisited of Object.keys(this.AdjList))
+        for (const isVisited in this.AdjList)
             visited[isVisited] = false
         visited[start] = true
         queue.push([start]);
@@ -40,7 +40,7 @@ export class Graph {
         }
     }
 
-    minDistance(dist,sptSet) {
+    minDistance(dist: {}, sptSet: {}) {
         let min = Number.MAX_VALUE;
         let min_index = '';
         for(let vertice in this.AdjList) {
@@ -54,26 +54,26 @@ export class Graph {
 
     dijkstra(start: string, end: string) {
         let path = {};
-        let dist = new Array(this.noOfVertices);
-        let sptSet = new Array(this.noOfVertices);
+        let dist = {};
+        let sptSet = {};
         
-        for(var i in this.AdjList) {
-            dist[i] = Number.MAX_VALUE;
-            sptSet[i] = false;
-            path[i] = new Map()
+        for(const vertice in this.AdjList) {
+            dist[vertice] = Number.MAX_VALUE;
+            sptSet[vertice] = false;
+            path[vertice] = new Map()
         }
         
         dist[start] = 0; 
         for(let count = 0; count < this.noOfVertices; count++) {
-            let u = this.minDistance(dist, sptSet);
+            const minimalDistance = this.minDistance(dist, sptSet);
             
-            sptSet[u] = true;
+            sptSet[minimalDistance] = true;
 
-            for(let v in this.AdjList) {
-                if (!sptSet[v] && dist[u] != Number.MAX_VALUE && dist[u] + this.AdjList[u].get(v) < dist[v]) {
-                    dist[v] = dist[u] + this.AdjList[u].get(v);
-                    path[v].set(u,dist[v])
-                    if(v == end)
+            for(const vertice in this.AdjList) {
+                if (!sptSet[vertice] && dist[minimalDistance] != Number.MAX_VALUE && dist[minimalDistance] + this.AdjList[minimalDistance].get(vertice) < dist[vertice]) {
+                    dist[vertice] = dist[minimalDistance] + this.AdjList[minimalDistance].get(vertice);
+                    path[vertice].set(minimalDistance,dist[vertice])
+                    if(vertice == end)
                         break
                 }
             }
@@ -95,10 +95,10 @@ export class Graph {
         vetChaves.push(start)
         
         pathEnd.set(vetChaves[vetChaves.length-1],0)
-        for(i=vetValores.length-1;i>=0;i--) {
-            pathEnd.set(vetChaves[i], vetValores[i])
+        for(let vertice = vetValores.length-1; vertice >= 0; vertice--) {
+            pathEnd.set(vetChaves[vertice], vetValores[vertice])
         }
-        return pathEnd
+        return pathEnd;
     }
 
     printGraph() {
