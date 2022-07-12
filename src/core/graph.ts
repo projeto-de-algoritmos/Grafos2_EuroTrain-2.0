@@ -16,30 +16,6 @@ export class Graph {
         this.AdjList[neighboor][vertice] = distance
     }
 
-    bfs(start: string, end: string): string[] {
-        const queue = [];
-        const visited = {}
-        for (const isVisited in this.AdjList)
-            visited[isVisited] = false
-        visited[start] = true
-        queue.push([start]);
-        while (queue.length > 0) {
-            const path = queue.shift()
-            const node = path[path.length-1]
-            if (node === end) {
-                return path;
-            }
-            for (const adjascent in this.AdjList[node]) {
-                if(visited[adjascent] == false) {
-                    const new_path = [...path]
-                    new_path.push(adjascent)
-                    queue.push(new_path) 
-                    visited[adjascent] = true;
-                }
-            }
-        }
-    }
-
     minDistance(dist: {}, sptSet: {}) {
         let min = Number.MAX_VALUE;
         let min_index = '';
