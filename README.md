@@ -18,10 +18,14 @@ Pegamos o mapa ferroviário da Europa ([presente nesse site](https://www.eurail.
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
+**Linguagem**: Typescript<br>
+**Framework**: Next.js<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
-
+* Necessário possuir node e yarn instalados, após isso rodar os seguintes comandos
+```
+yarn install
+yarn dev
+```
 ## Uso 
 Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
 
