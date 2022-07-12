@@ -13,7 +13,8 @@
 Pegamos o mapa ferroviário da Europa ([presente nesse site](https://www.eurail.com/pt/plan-your-trip/railway-map)) e usamos os dados de todas as estações constadas ali, depois definimos que os vértices seriam as estações de trem e as arestas seriam as linhas de trem, após isso adiconamos pesos às arestas, sendo estas os tempos de viagem entre uma estação e outra. O projeto consiste em o usuário poder escolher uma origem e um destino, e receber a rota mais rápida para seu destino.
 
 ## Apresentação
-  
+[Vídeo de apresentação para download](https://github.com/projeto-de-algoritmos/Grafos2_EuroTrain-2.0/blob/master/Grafos2.mp4)  
+[Vídeo de apresentação no Youtube](https://youtu.be/_cKXblAew9k)
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 ![image](https://user-images.githubusercontent.com/48574832/178384442-df259b31-5303-447b-9888-b6003e4a9e4d.png)
