@@ -92,6 +92,9 @@ export class Graph {
 // Adicionando vértices e arestas no Grafo ("Base de dados")
 var G = new Graph(73);
 const vertices = ["Paris", "Lyon", "Marselha", "Montpellier", "Nice", "Bordéus", "Rennes", "Milão", "Bolonha", "Florença", "Roma", "Nápoles", "Bari", "Catânia", "Veneza", "Munique", "Frankfurt", "Colônia", "Hamburgo", "Berlim", "Madrid", "Pamplona", "Santander", "Santiago de Compostela", "Lisboa", "Málaga", "Sevilha", "Valência", "Barcelona", "Porto", "Faro", "Berna", "Copenhage", "Oslo", "Estocolmo", "Bergen", "Östersund", "Trondheim", "Kiruna", "Bruxelas", "Amsterdã", "Londres", "Penzance", "Bristol", "Holyhead", "Birmingham", "Edimburgo", "Glasgow", "Aberdeen", "Talín", "Tartu", "Riga", "Vilnius", "Dunaburgo", "Klaipėda", "Białystok", "Varsóvia", "Gdansk", "Praga", "Viena", "Budapeste", "Liubliana", "Zagrebe", "Belgrado", "Bucareste", "Split", "Sófia", "Escópia", "Istambul", "Tessalônica", "Atenas", "Pátras", "Ancara"];
+vertices.sort(function (a: string, b: string) {
+    return ('' + a).localeCompare(b);
+})
 
 for (var i = 0; i < vertices.length; i++) {
     G.newVertice(vertices[i]);
@@ -198,5 +201,6 @@ G.newEdge('Sófia', 'Tessalônica', 6.67);
 G.newEdge('Escópia', 'Tessalônica', 4);
 G.newEdge('Tessalônica', 'Atenas', 4.42);
 G.newEdge('Atenas', 'Pátras', 3.58);
+G.newEdge('Istambul', 'Ancara', 4);
 
 export {vertices, G}
