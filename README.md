@@ -16,6 +16,10 @@ Pegamos o mapa ferroviário da Europa ([presente nesse site](https://www.eurail.
   
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
+![image](https://user-images.githubusercontent.com/48574832/178384442-df259b31-5303-447b-9888-b6003e4a9e4d.png)
+![image](https://user-images.githubusercontent.com/48574832/178384472-b04be008-0ad7-4b7f-9d93-7e1da3fd23ea.png)
+![image](https://user-images.githubusercontent.com/48574832/178384516-ac68d20d-b494-445e-b59a-4123de50b69f.png)
+
 
 ## Instalação 
 **Linguagem**: Typescript<br>
