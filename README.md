@@ -31,7 +31,9 @@ yarn install
 yarn dev
 ```
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+Para usar basta entra [nesse link](https://grafos1-euro-train.vercel.app/), e depois disso selecionar a cidade de origem e a cidade de destino.  
 
+<!--
 ## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.  
+Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+-->
