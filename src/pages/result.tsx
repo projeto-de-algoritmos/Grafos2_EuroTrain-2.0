@@ -15,11 +15,9 @@ export default function Result() {
   let lastTime = 0;
   const data = router.query as routeInput;
   const fastRoute = G.dijkstra(data.startingStation, data.destiny);
-
-  const routeArray = Object.keys(fastRoute);
-
-  const totalMinutes = fastRoute[routeArray[routeArray.length-1]] * 60;
-  const finalTime = `${dayjs.duration(totalMinutes, 'minutes').format(`H [horas] e m [minutos]`)}`;
+  const totalHours = Math.floor(fastRoute[data.destiny]);
+  const totalMinutes = Math.ceil((fastRoute[data.destiny] - totalHours) * 60);
+  const finalTime = `${totalHours} horas e ${totalMinutes} minutos`;
   return (
   <Container>
     <div style={{marginBottom: '2em'}}>
